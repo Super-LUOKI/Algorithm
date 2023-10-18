@@ -1,7 +1,0 @@
-cmake_minimum_required(VERSION 3.26)
-project(Algorithm)
-
-set(CMAKE_CXX_STANDARD 17)
-
-add_executable(Algorithm main.cpp)
-add_executable(1-prime #-Math/class1/1-prime.cpp)
