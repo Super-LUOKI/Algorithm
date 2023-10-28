@@ -1,4 +1,4 @@
-package Chapter1_Basic_Algorithm.Class1_Dichotomy_And_Xor;
+package Phase1.Chapter1_Basic_Algorithm.Class1_Dichotomy_And_Xor;
 
 import util.Util;
 
