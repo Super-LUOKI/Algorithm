@@ -1,6 +1,4 @@
-package Phase1.Chapter1_Basic_Algorithm.Class2_DataStructure;
-
-import util.Util;
+package Phase1.Chapter1_Basic_Algorithm.Class2_DataStructure_Sort;
 
 public class B_Recursion {
 
