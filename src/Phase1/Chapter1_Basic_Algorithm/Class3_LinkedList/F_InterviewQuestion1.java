@@ -151,7 +151,7 @@ public class F_InterviewQuestion1 {
         Node loop2 = getLoopNode(head2);
         if (loop1 == null && loop1 == null) return noLoop(head1, head2);
         if (loop1 != null && loop2 != null) return bothLoop(head1, loop1, head2, loop2);
-        return null; // 一个有环一个无环不可能相交
+        return null; // 一个有环一个无~环不可能相交
     }
 
 }
