@@ -32,7 +32,7 @@ public class A_Dichotomy_GetLessIndex {
     public static void bubbleSort(Integer[] arr) {
         if (arr == null || arr.length < 2) return;
         for (int i = arr.length - 1; i >= 0; i--) {
-            for (int j = 0; j <= i - 1; j++) {
+            for (int j = 0; j <= i - 1; j++) { // j <= i - 1是因为下方下标会取到 j + 1
                 if (arr[j] > arr[j + 1]) Util.swap(arr, j, j + 1);
             }
         }
@@ -47,6 +47,9 @@ public class A_Dichotomy_GetLessIndex {
     // }
 
 
+    /**
+     * TODO: 算法有问题，请检查
+     */
     /**
      * 二分：在sortedArr上找满足 >=value 最左边数的索引
      *
@@ -70,10 +73,10 @@ public class A_Dichotomy_GetLessIndex {
         return index;
     }
 
-    // public static void main(String[] args) {
-    //     int[] arr = {1, 2, 4, 5, 5, 5, 5, 5, 6, 8, 9, 90};
-    //     System.out.println(nearestIndex(arr, 5)); // 3
-    // }
+     public static void main(String[] args) {
+         int[] arr = {1, 2, 9};
+         System.out.println(nearestIndex(arr, 5)); // 3
+     }
 
     /**
      * 寻找任意一个局部最小数的索引
@@ -106,10 +109,10 @@ public class A_Dichotomy_GetLessIndex {
         return l;
     }
 
-    public static void main(String[] args) {
-        int[] arr = {7, 2, 4, 5, 4, 2, 1, 5, 6, 8, 9, 90};
-        System.out.println(getLessIndex(arr)); // 3
-    }
+//    public static void main(String[] args) {
+//        int[] arr = {7, 2, 4, 5, 4, 2, 1, 5, 6, 8, 9, 90};
+//        System.out.println(getLessIndex(arr)); // 3
+//    }
 
 
 }
