@@ -130,7 +130,7 @@ public class E_Heap {
         for(;index <= Math.min(arr.length - 1, k); index++) heap.add(arr[index]); // TODO: 有个问题，这里应该是 <= 原来是 < 需要查看原视频
         // 循环出堆入堆
         int i = 0;
-        for(; index < arr.length; i++, index++) {
+        for(; index < arr.length; i++, index++) { // 从排序来看，如堆堆元素（原来在数组中是开始位置）堆移动距离一定不会在堆外（因为堆堆容量为 k + 1）
             arr[i] = heap.poll();
             heap.add(arr[index]);
         }

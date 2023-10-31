@@ -3,6 +3,7 @@ package Practice;
 import util.Util;
 
 import java.util.LinkedList;
+import java.util.PriorityQueue;
 import java.util.Queue;
 import java.util.Stack;
 
@@ -96,7 +97,28 @@ public class Main {
 
 
 
-    public void sortedArrDistanceLessK(Integer[] arr, int k){
-        
+    public void sortedArrDistanceLessK1(Integer[] arr, int k){
+        PriorityQueue<Integer> heap = new PriorityQueue<>();
+        int index = 0;
+        for(; index <= Math.min(arr.length - 1, k); index++) heap.add(arr[index]);
+        int i = 0;
+        for(;index<arr.length; index++, i++){
+            arr[i] = heap.poll();
+            heap.add(arr[index]);
+        }
+        while (!heap.isEmpty()) arr[i++] = heap.poll();
+    }
+
+    public void sortedArrDistanceLessK2(Integer[] arr, int k){
+        PriorityQueue<Integer> heap = new PriorityQueue<>();
+        int index = 0;
+        for(;index < Math.min(arr.length - 1, k); index++) heap.add(arr[index]);
+        int i = 0;
+        for(;index < arr.length; index++, i++){
+            arr[i] = heap.poll();
+            heap.add(arr[index]);
+        }
+        while (!heap.isEmpty()) arr[i++] = heap.poll();
+
     }
 }
