@@ -46,10 +46,6 @@ public class A_Dichotomy_GetLessIndex {
     //
     // }
 
-
-    /**
-     * TODO: 算法有问题，请检查
-     */
     /**
      * 二分：在sortedArr上找满足 >=value 最左边数的索引
      *
