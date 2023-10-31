@@ -17,7 +17,6 @@ public class E_Heap {
             this.heap = new Integer[limit];
             this.limit = limit;
             this.heapSize = 0;
-
         }
 
         public boolean isEmpty() {
@@ -128,7 +127,7 @@ public class E_Heap {
         PriorityQueue<Integer> heap = new PriorityQueue<>();
         int index = 0;
         // 先把前 k + 1 个数组成小根堆
-        for(;index < Math.min(arr.length - 1, k); index++) heap.add(arr[index]);
+        for(;index <= Math.min(arr.length - 1, k); index++) heap.add(arr[index]); // TODO: 有个问题，这里应该是 <= 原来是 < 需要解决
         // 循环出堆入堆
         int i = 0;
         for(; index < arr.length; i++, index++) {

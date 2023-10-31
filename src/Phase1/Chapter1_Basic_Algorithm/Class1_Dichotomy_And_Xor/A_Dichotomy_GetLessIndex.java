@@ -102,7 +102,7 @@ public class A_Dichotomy_GetLessIndex {
                 // 中间的比右边大
                 l = mid + 1;
             }else{
-                // 中间的比两边都小
+                // 中间的比两边都小 等于两边不可能，因为相邻不等
                 return mid;
             }
         }
