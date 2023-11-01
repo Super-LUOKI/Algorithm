@@ -2,6 +2,8 @@ package Phase1.Chapter1_Basic_Algorithm.Class4_BinaryTree;
 
 import Phase1.Chapter1_Basic_Algorithm.Class3_LinkedList.A_FastSlowPointer;
 
+import java.util.Stack;
+
 public class Tranverse {
 
     static class Node {
@@ -52,11 +54,80 @@ public class Tranverse {
     }
 
     /**
-     * 非递归（）
+     * 非递归（栈实现）
      * @param head
      */
     public static void stackPre(Node head){
+        if(head == null) return;
+        Stack<Node> stack = new Stack<>();
+        stack.add(head);
+        while (!stack.empty()){ // 因为先序遍历是 头左右，且栈是先进后出的逆序结构，所以想要先打印左节点就应该先入右孩子
+            head = stack.pop();
+            System.out.println(head.value);
+            if(head.right != null) stack.push(head.right);
+            if(head.left != null) stack.push(head.left);
 
+        }
+    }
+
+    /**
+     * 非递归后序遍历（栈实现）
+     * 因为先序遍历是 头左右 观察发现，上方栈实现的先序遍历 头左右，只要改变下一下后两个顺序，变成  头右左，其反过来就是后续遍历顺序
+     * @param head
+     */
+    public static void stackPos1(Node head){
+        if(head == null) return;
+        Stack<Node> s1 = new Stack<>();
+        Stack<Node> s2 = new Stack<>();
+        s1.push(head);
+        while (!s1.empty()){
+            head = s1.pop();
+            s2.push(head); // s1出栈 s2就入栈
+            if(head.left != null) s1.push(head.left);
+            if(head.right != null) s1.push(head.right);
+        }
+        while (!s2.empty()) System.out.println(s2.pop().value);
+    }
+
+    /**
+     * 非递归中序遍历
+     * @param head
+     */
+    public static void stackIn(Node head){
+        if(head == null) return;
+        Stack<Node> stack = new Stack<>();
+        while (!stack.empty() || head != null){
+            if(head != null){
+                stack.push(head);
+                head = head.left; // 往左边一条路走到黑
+            }else{
+                head = stack.pop();
+                System.out.println(head.value);
+                head = head.right; // 如果左边的路不可走则打印再往右走
+            }
+        }
+    }
+
+    /**
+     * 只用一个栈实现 非递归后序遍历
+     * @param head
+     */
+    public static void stackPos2(Node head){
+        if(head == null) return;
+        Stack<Node> stack = new Stack<>();
+        stack.push(head);
+        Node c;
+        while (!stack.empty()){
+            c = stack.peek();
+            if(c.left != null && head != c.left && head != c.right){
+                stack.push(c.left);
+            }else if(c.right != null && head != c.right){
+                stack.push(c.right);
+            }else{
+                System.out.println(stack.pop().value);
+                h = c;
+            }
+        }
     }
 
 
