@@ -125,7 +125,7 @@ public class Tranverse {
                 stack.push(c.right);
             }else{
                 System.out.println(stack.pop().value);
-                h = c;
+                head = c;
             }
         }
     }
