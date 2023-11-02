@@ -2,6 +2,9 @@ package Phase1.Chapter1_Basic_Algorithm.Class4_BinaryTree;
 
 import Phase1.Chapter1_Basic_Algorithm.Class3_LinkedList.A_FastSlowPointer;
 
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Stack;
 
 public class Tranverse {
@@ -129,4 +132,99 @@ public class Tranverse {
             }
         }
     }
+
+    /**
+     * 层序遍历
+     * 使用队列实现层序遍历
+     * @param head
+     */
+    public static void level(Node head){
+        if(head == null) return;
+        Queue<Node> queue = new LinkedList<>();
+        queue.add(head);
+        while (!queue.isEmpty()){
+            Node cur = queue.poll();
+            System.out.println(cur.value);
+            if(cur.left != null) queue.add(cur.left);
+            if(cur.right != null) queue.add(cur.right);
+        }
+    }
+
+    /**
+     * 获取树中，具有节点最多的一层的节点数
+     * 重点在于：知道某层啥时候开始或者啥时候结束
+     *
+     * @param head
+     * @return
+     */
+    public static int level1(Node head){
+        if(head == null) return -1;
+        Queue<Node> queue = new LinkedList<>();
+        queue.add(head);
+        HashMap<Node, Integer> levelMap = new HashMap<>(); // key 节点 value 节点坐在层数
+        levelMap.put(head, 1);
+        int curLevel = 1; // 当前所在的层
+        int currLevelNodes = 0; // 当前层的节点数
+        int max = 0; // 最大多节点层的节点数
+        while (!queue.isEmpty()){
+            Node cur = queue.poll();
+            int curNodeLevel = levelMap.get(cur);
+            if(cur.left != null) {
+                levelMap.put(cur.left, curNodeLevel + 1);
+                queue.add(cur.left);
+            }
+            if(cur.right != null){
+                levelMap.put(cur.right, curNodeLevel + 1);
+                queue.add(cur.right);
+            }
+            if(curNodeLevel == curLevel){
+                currLevelNodes++; // 如果取出来的节点所在的层数与当前记录的遍历所在的层数一致，则增加节点数量
+            }else{
+                // 当某层最后一个节点遍历完，下一层第一个节点出队列的时候，辉触发这个分支
+                // 也就是说，我们知道这个时候上一层已经结束。这一层已经开始
+                max = Math.max(max, currLevelNodes);
+                curLevel++; // 当前层数 + 1
+                currLevelNodes = 1; // 将当前层的节点数记录为1，因为此时新层已经有一个节点出队列了
+            }
+        }
+        max = Math.max(max, currLevelNodes); // 上方的逻辑中，会缺失最后一层的比较，所以这里要补上
+        return max;
+
+    }
+
+    /**
+     * 获取树中，具有节点最多的一层的节点数
+     * 这个方法相较于上一个方法，不需要使用HashMap,因为算法结果并不要求记住每个节点在那一层
+     * 只需要标记当前层结束或者开始即可
+     * @param head
+     * @return
+     */
+    public static int level3(Node head){
+        if(head == null) return -1;
+        Queue<Node> queue = new LinkedList<>();
+        queue.add(head);
+        Node curEnd = head; // 当前层结束最后一个节点
+        Node nextEnd = null; // 下一层最后一个节点
+        int max = 0;
+        int curLevelNodes = 0; // 当前层节点数
+        while (!queue.isEmpty()){
+            Node cur = queue.poll();
+            if(cur.left != null){
+                queue.add(cur.left);
+                nextEnd = cur.left; // 不断更新记录值，最终结果就是下一层的最后一个节点值
+            }
+            if(cur.right != null){
+                queue.add(cur.right);
+                nextEnd = cur.right;
+            }
+            curLevelNodes++; // 出栈了，所以当前层节点 + 1
+            if(cur == curEnd){
+                max = Math.max(max, curLevelNodes);
+                curLevelNodes = 0; // 重置层的节点数
+                curEnd = nextEnd;
+            }
+        }
+        return max;
+    }
+
 }
