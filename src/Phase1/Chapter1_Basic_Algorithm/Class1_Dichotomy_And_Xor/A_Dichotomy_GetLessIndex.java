@@ -12,7 +12,8 @@ public class A_Dichotomy_GetLessIndex {
         for (int i = 0; i < arr.length - 1; i++) {
             int minIndex = i;
             for (int j = i + 1; j < arr.length; j++) {
-                minIndex = arr[j] < arr[minIndex] ? j : minIndex; // 注意不要写错，这里不要把minIndex写成了i
+                // 注意不要写错，这里不要把minIndex写成了i
+                minIndex = arr[j] < arr[minIndex] ? j : minIndex;
             }
             Util.swap(arr, i, minIndex);
         }
@@ -92,7 +93,8 @@ public class A_Dichotomy_GetLessIndex {
             if(arr[mid] > arr[mid - 1]){
                 // 中间的比左边大
                 r = mid - 1;
-                // 想法，让  r = mid 这样可以让极端情况下，让左边数组范围保持存在局部最小，用 r = mid - 1 会不会有问题呢？
+                // 想法，让  r = mid 这样可以让极端情况下，让左边数组范围保持存在局部最小，
+                // 用 r = mid - 1 会不会有问题呢？
                 // 不会，见图 1-1
             }else if(arr[mid] > arr[mid + 1]){
                 // 中间的比右边大
