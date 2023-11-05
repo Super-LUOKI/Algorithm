@@ -1,13 +1,11 @@
 package Phase1.Chapter1_Basic_Algorithm.Class4_BinaryTree;
 
-import Phase1.Chapter1_Basic_Algorithm.Class3_LinkedList.A_FastSlowPointer;
-
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Stack;
 
-public class Tranverse {
+public class A_Tranverse {
 
     static class Node {
         public int value;

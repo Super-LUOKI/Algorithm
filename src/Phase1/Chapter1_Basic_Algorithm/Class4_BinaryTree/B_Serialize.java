@@ -3,7 +3,7 @@ package Phase1.Chapter1_Basic_Algorithm.Class4_BinaryTree;
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class Serialize {
+public class B_Serialize {
     static class Node {
         public int value;
         public Node left;
@@ -101,6 +101,7 @@ public class Serialize {
     /**
      * 宽度优先遍历逆序列化
      */
+
     public static Node buildByLevelQueue(Queue<String> levelList){
         if(levelList == null || levelList.size() == 0) return null;
         Node head = Node.newNode(levelList.poll());
